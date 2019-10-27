@@ -1,0 +1,20 @@
+{
+  "name": "hello-block",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node index.js",
+  "scripts": {
+	"start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaharavara/hello-block.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaharavara/hello-block/issues"
+  },
+  "homepage": "https://github.com/gaharavara/hello-block#readme"
+}
