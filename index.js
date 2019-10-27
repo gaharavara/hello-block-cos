@@ -27,6 +27,10 @@ const server = http.createServer((req, res)=>{
         res.end(JSON.stringify(users));
     }
 */
+   if (req.method === "GET") {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        fs.createReadStream("./public/transact.html", "UTF-8").pipe(res);
+    }
 
     // Build file path
     let filePath = path.join(
