@@ -3,7 +3,7 @@
 
 <head>
     <title>Stellar Thrust</title>
-    <style></style>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
 
 <body>
@@ -11,20 +11,40 @@
     <script src="https://cdn.jsdelivr.net/npm/@coschain/cosjs@1.2.1/dist/cosjs.min.js"></script>
     <script>
         let cos = new Cos("test", "https://testnode.contentos.io");
-
+		
+		// Adding sample accounts
+		
         cos.wallet.addAccount("gaharavara", "41ZrRD5E1t7u5B8BsMUwCUGDYey1E7CdTDc93ikeUdhGgz9gL6");
+		cos.wallet.addAccount("mralien", "4Dwemkhdw1b9L2AUmrBXhaJZeEnGC8X7FNkv5bFrh89yZfivQV"); // Contract holder
 
 
+// Creating our Own Tokens
+
+// Just need to be executed once exactly after the contract creation.
+// IGW [InterGalacticWarriors is the abbrevation of our in-game currency]
+
+/*
         (async () => {
-            let result = await cos.wallet.contractCall("gaharavara", "gaharavara", "spacethrust", "create", "[\"GAH\", \"GAH\", 10000000, 3]", "0.000000");
+            let result = await cos.wallet.contractCall("mralien", "mralien", "space_thrust", "create", "[\"mralien\", \"IGW\", 10000000, 3]", "0.000000");
             console.log(result.invoice);
         })();
+*/
 
-        //      (async () => {
-        //        let result = await cos.wallet.accountInfo("initminer");
-        //        console.log(result);
-        //      })();
+// For transfer of in-game coins
+// Logic for transacting 10 IGW for 1 COS        
+        (async () => {
+            
+            // First transfer 1 COS to contract holder i.e. developers
+            let result = await cos.wallet.transfer("gaharavara", "mralien", "1.000000","memo");
+            console.log(result);
 
+            // In case of a successfull transaction, send 10 IGW coins to the user
+            if(result.trxId != "") {
+            let result = await cos.wallet.contractCall("mralien", "mralien", "space_thrust", "transfer", "[\"mralien\", \"gaharavara\", 10]", "0.000000");
+            console.log(result.invoice);
+            }
+
+        })();
     </script>
 </body>
 
