@@ -10,10 +10,18 @@
     <script>
         let cos = new Cos("test", "https://testnode.contentos.io");
 
-        (async () => {
-          let result = await cos.wallet.accountInfo("initminer");
-          console.log(result);
-        })();
+        cos.wallet.addAccount("gaharavara", "41ZrRD5E1t7u5B8BsMUwCUGDYey1E7CdTDc93ikeUdhGgz9gL6");
+
+
+(async() => {
+  let result = await cos.wallet.contractCall("gaharavara", "gaharavara", "spacethrust", "create", "[\"GAH\", \"GAH\", 10000000, 3]", "0.000000");
+  console.log(result.invoice);
+})();
+
+  //      (async () => {
+  //        let result = await cos.wallet.accountInfo("initminer");
+  //        console.log(result);
+  //      })();
     </script>
     </body>
 </html>
