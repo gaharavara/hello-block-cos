@@ -1,4 +1,52 @@
 body {
-    background-color: black;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to leftt, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: white;
+}
+
+.game-desc {
+    height: 200px;
+    margin-left: 20%;
+    margin-right: 20% ;
+    margin-top: 5%;
+}
+
+.main-char {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+.boss {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+}
+
+
+.purchase {
+    margin-left: 20%;
+}
+
+.coin h2 {
+    position: relative;
+    top: -95px;
+    left: 10%;
+}
+
+.purchase-btn {
+    height: 50px;
+    width: 150px;
+    border-radius: 3px ;
+    border: 2px solid green;
+}
+
+.purchase-btn h2 {
+    margin-top: 13px;
+}
+
+.purchase-btn:hover {
+    background: greenyellow;
+    cursor: pointer;
 }

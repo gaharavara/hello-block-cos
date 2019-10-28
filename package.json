@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/gaharavara/hello-block#readme",
   "dependencies": {
-    "@coschain/cosjs": "^1.2.3"
+    "@coschain/cosjs": "^1.2.3",
+    "express": "^4.17.1"
   }
 }

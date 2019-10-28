@@ -7,7 +7,15 @@
 </head>
 
 <body>
-    <h1>Purchase Stellar Thrust COINS using COS</h1>
+    <div class="purchase">
+        <h1>Purchase Stellar Thrust COINS using COS</h1>
+        <h2>1 COS = </h2>
+        <div class="coin"><img src="static/coin.png" width="100px" height="99px"/> <h2>X     10 [ IGW Coins ] </h2></div>
+        <div id="purchase" class="purchase-btn"><h2>Purchase Now<h2></div>
+    </div>
+    <div class="main-char"><img src="static/lead.png" /></div>
+    <div class="boss"><img src="static/boss.png" /></div>    
+
     <script src="https://cdn.jsdelivr.net/npm/@coschain/cosjs@1.2.1/dist/cosjs.min.js"></script>
     <script>
         let cos = new Cos("test", "https://testnode.contentos.io");
@@ -30,8 +38,10 @@
         })();
 */
 
+document.getElementById("purchase").onclick = function() {
 // For transfer of in-game coins
 // Logic for transacting 10 IGW for 1 COS        
+alert("transact");
         (async () => {
             
             // First transfer 1 COS to contract holder i.e. developers
@@ -45,6 +55,7 @@
             }
 
         })();
+}       
     </script>
 </body>
 
