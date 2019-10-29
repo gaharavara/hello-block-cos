@@ -10,13 +10,13 @@ To run the server, use command `node index.js`
 
 
 or Visit the url to see it's live implementation 
-* [A short decription of the game ](https://conentos-handler.herokuapp.com/)
+* [A short decription of the game ](https://block-contentos.herokuapp.com/)
 
-* [Portal to purchase in game coins IGW | contentos-handler-for-stellar-thrust ](https://conentos-handler.herokuapp.com/transact)
+* [Portal to purchase in game coins IGW | contentos-handler-for-stellar-thrust ](https://block-contentos.herokuapp.com/transact)
 
-* [Portal to revive by purchasing IGW exchanging it with COS ](https://conentos-handler.herokuapp.com/revive)
+* [Portal to revive by purchasing IGW exchanging it with COS ](https://block-contentos.herokuapp.com/revive)
 
-* [Portal to view you account ](https://conentos-handler.herokuapp.com/account)
+* [Portal to view you account ](https://block-contentos.herokuapp.com/account)
 
 **Note : Most of the above links are supposed to be requested via in-game declarations thus may not work properly unless visited from the game**
 
