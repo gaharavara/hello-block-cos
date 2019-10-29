@@ -5,6 +5,8 @@ const path = require('path');
 
 const server = http.createServer((req, res)=>{
 
+// Parses the url requested and stores it in parsed_url     
+var parsed_url = url.parse(req.url, true);
 
 // This is the most basic approach and is not much effective for bigger operations
 /*
@@ -35,9 +37,13 @@ const server = http.createServer((req, res)=>{
         req.url === '/' ? 'index.html' : req.url
     );
     
-    if (req.url === '/transact') {
+    // Pathname to take queries like /transact?coins=10
+    if (parsed_url.pathname === '/transact') {
+        console.log("inside transact");
         fs.readFile(path.join(__dirname,'public','transact.html'), (err, content)=>{
                 if (err) throw err;
+                var data = parsed_url.query.coins;
+                console.log(data);
                 res.writeHead(200, { 'Content-Type':'text/html'});
                 res.end(content);
             }
