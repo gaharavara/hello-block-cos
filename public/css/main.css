@@ -63,3 +63,34 @@ body {
     border-radius: 3px;
     background: rgba(0,1,0,0.7);
 }
+
+
+
+
+
+
+
+
+.revive {
+    position: absolute;
+    z-index: 5;
+    top: 45%;
+    left: 45%;
+    width: 150px;
+    height: 40px;
+    color: white;
+    text-align: center;
+    padding-top: 7px;
+    border: 3px solid blue;
+    text-decoration: none !important;
+    font-size: 1.5em;
+}
+
+.revive a {
+    text-decoration: none;
+    color: white;
+}
+
+.revive:hover {
+    font-weight: bold;
+}
