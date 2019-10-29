@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stellar Thrust</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+    </head>
+    <body>
+        <div class="profile-head">My Account</div>
+        <div class="profile">
+                <div class="main-char"><img src="static/lead.png" /></div>
+                <div class="account-info">
+                    <h1><u>TOTAL COINS </u><div id="total-coins"></div></h1>
+                </div>
+        </div>
+        <script>
+            // A temporary hack to show the number of coins the user is holding
+            let param = window.location.search;
+            document.getElementById("total-coins").innerHTML ="<h1><i>"+ param.slice(param.indexOf("=")+1, param.length)+"</i></h1>";
+        </script>    
+    </body>
+</html>

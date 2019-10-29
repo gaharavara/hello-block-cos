@@ -1,19 +1,104 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Error 404</title>
-        <style></style>
-    </head>
-    <body>
-      <h1>STATE THE AMOUNT OF COS PORTAl</h1>
-      <script src="https://cdn.jsdelivr.net/npm/@coschain/cosjs@1.2.1/dist/cosjs.min.js"></script>
+
+<head>
+    <title>Stellar Thrust</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+
+<body>
+    <div class="purchase">
+        <h1>Purchase Stellar Thrust COINS using COS</h1>
+        <h2>1 COS = </h2>
+        <div class="coin"><img src="static/coin.png" width="100px" height="99px"/> <h2>X     10 [ IGW Coins ] </h2></div>
+        <div id="purchase" class="purchase-btn"><h2>Purchase Now<h2></div>
+    </div>
+
+    <div class="purchase-log">
+        <div class="purchase-logbox" id="cos-transfer">Purchase LOG :</div>
+        <div class="purchase-logbox" id="igw-transfer"></div>
+        <div class="purchase-logbox" id="error-log"></div>
+    </div>
+
+    <div class="main-char"><img src="static/lead.png" /></div>
+    <div class="boss"><img src="static/boss.png" /></div>    
+
+    <script src="https://cdn.jsdelivr.net/npm/@coschain/cosjs@1.2.1/dist/cosjs.min.js"></script>
     <script>
         let cos = new Cos("test", "https://testnode.contentos.io");
+		
+		// Adding sample accounts
+		
+        cos.wallet.addAccount("gaharavara", "41ZrRD5E1t7u5B8BsMUwCUGDYey1E7CdTDc93ikeUdhGgz9gL6");
+		cos.wallet.addAccount("mralien", "4Dwemkhdw1b9L2AUmrBXhaJZeEnGC8X7FNkv5bFrh89yZfivQV"); // Contract holder
 
+
+// Creating our Own Tokens
+
+// Just need to be executed once exactly after the contract creation.
+// IGW [InterGalacticWarriors is the abbrevation of our in-game currency]
+
+/*
         (async () => {
-          let result = await cos.wallet.accountInfo("initminer");
-          console.log(result);
+            let result = await cos.wallet.contractCall("mralien", "mralien", "space_thrust", "create", "[\"mralien\", \"IGW\", 10000000, 3]", "0.000000");
+            console.log(result.invoice);
         })();
+*/
+
+document.getElementById("purchase").onclick = function() {
+// For transfer of in-game coins
+// Logic for transacting 10 IGW for 1 COS        
+alert("transaction in progress");
+var flag = 0;
+var result;
+// Purchase now lets you buy 10 coins at a time for now
+// window.location.replace("http://localhost:7000/transact?coins=10"); 
+try {
+        (async () => {
+            
+            // First transfer 1 COS to contract holder i.e. developers
+                result = await cos.wallet.transfer("gaharavara", "mralien", "1.000000","memo");
+                console.log(result);
+
+                // In case of a successfull transaction, send 10 IGW coins to the user
+                if(result.invoice.status === 200) {
+                    flag = 1;
+                    document.getElementById("cos-transfer").innerHTML = " Transaction ID : "+result.invoice.trxId+" 1 COS => Stellar Thrust";
+                    console.log("Inside 2nd transaction");
+                    
+                    (async () => {
+                        result = await cos.wallet.contractCall("mralien", "mralien", "space_thrust", "transfer", "[\"mralien\", \"gaharavara\", 10]", "0.000000");
+                        console.log(result);
+                        if(result.invoice.status === 200) {
+                            document.getElementById("igw-transfer").innerHTML = " Transaction ID : "+result.invoice.trxId+" Stellar Thrust => 10 IGW";
+                            flag = 3;
+                            document.getElementById("error-log").innerHTML = ' Transaction successfull !! Verify it at <a target="_blank" href="https://testexplorer.contentos.io/#/"> Contentos </a> ';
+                        } else {
+                            document.getElementById("igw-transfer").innerHTML = " Transaction : Stellar Thrust => 10 IGW FAILED";
+                            flag = 2;
+                        }
+                    })();
+
+                } else {
+                    document.getElementById("cos-transfer").innerHTML = " Transaction : 1 COS => Stellar Thrust FAILED !";    
+                }
+
+        })();
+    } catch(err) {
+            if(flag === 0) {
+                document.getElementById("cos-transfer").innerHTML = " Transaction : 1 COS => Stellar Thrust FAILED !";
+                document.getElementById("error-log").innerHTML = ""+err+"";
+            }
+            if(flag === 1) {
+                document.getElementById("igw-transfer").innerHTML = " Transaction : Stellar Thrust => 10 IGW FAILED";
+                document.getElementById("error-log").innerHTML = ""+err+"";
+            }
+            if(flag === 2) {
+                document.getElementById("error-log").innerHTML = ""+err+"";
+            }
+        }
+    }       
     </script>
-    </body>
+</body>
+
 </html>

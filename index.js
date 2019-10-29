@@ -5,6 +5,8 @@ const path = require('path');
 
 const server = http.createServer((req, res)=>{
 
+// Parses the url requested and stores it in parsed_url     
+var parsed_url = url.parse(req.url, true);
 
 // This is the most basic approach and is not much effective for bigger operations
 /*
@@ -27,10 +29,6 @@ const server = http.createServer((req, res)=>{
         res.end(JSON.stringify(users));
     }
 */
-   if (req.method === "GET") {
-        res.writeHead(200, { "Content-Type": "text/html" });
-        fs.createReadStream("./public/transact.html", "UTF-8").pipe(res);
-    }
 
     // Build file path
     let filePath = path.join(
@@ -39,6 +37,43 @@ const server = http.createServer((req, res)=>{
         req.url === '/' ? 'index.html' : req.url
     );
     
+    // Pathname to take queries like /transact?coins=10
+    if (parsed_url.pathname === '/transact') {
+        console.log("inside transact");
+        fs.readFile(path.join(__dirname,'public','transact.html'), (err, content)=>{
+                if (err) throw err;
+                var data = parsed_url.query.coins;
+                console.log(data);
+                res.writeHead(200, { 'Content-Type':'text/html'});
+                res.end(content);
+            }
+        );
+    }
+
+    if (parsed_url.pathname === '/revive') {
+        console.log("inside transact");
+        fs.readFile(path.join(__dirname,'public','revive.html'), (err, content)=>{
+                if (err) throw err;
+                var data = parsed_url.query.coins;
+                console.log(data);
+                res.writeHead(200, { 'Content-Type':'text/html'});
+                res.end(content);
+            }
+        );
+    }
+
+    if (parsed_url.pathname === '/account') {
+        console.log("inside transact");
+        fs.readFile(path.join(__dirname,'public','account.html'), (err, content)=>{
+                if (err) throw err;
+                var data = parsed_url.query.coins;
+                console.log(data);
+                res.writeHead(200, { 'Content-Type':'text/html'});
+                res.end(content);
+            }
+        );
+    }
+
     // Extension of the file
     let extname = path.extname(filePath);
 
@@ -93,4 +128,4 @@ const server = http.createServer((req, res)=>{
 // Takes the port assigned to the enviornment path variable or else 7000 if it is free
 const PORT = process.env.PORT || 7000;
 
-server.listen(PORT, ()=>{});
+server.listen(PORT, () => console.log(`Server is running on the port ${PORT}`));
