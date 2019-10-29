@@ -25,6 +25,12 @@ body {
 }
 
 
+
+
+
+
+
+
 .purchase {
     margin-left: 20%;
 }
@@ -60,10 +66,14 @@ body {
     bottom: 20%;
     height: 200px;
     border: 3px solid white;
+    text-align: center;
     border-radius: 3px;
     background: rgba(0,1,0,0.7);
 }
 
+.purchase-logbox {
+    padding: 10px;
+}
 
 
 
@@ -93,4 +103,56 @@ body {
 
 .revive:hover {
     font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+.profile-head {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 6;
+    text-align: center;
+    font-size: 2em;
+}
+.profile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,1,0,0.3);
+
+}
+
+.profile .main-char {
+    position: relative;
+    top: 20%;
+    left: 20%;
+    right: 50%;
+}
+
+.profile .account-info {
+    position: relative;
+    top: -50%;
+    left: 50%;
+    right: 2%;
+    width: 50vw;
+    height: 100vh;
+    background: rgba(1, 0.3, 0.5, 0.3); 
+    color: white;
+}
+
+.account-info h1 {
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    left: 2%;
 }

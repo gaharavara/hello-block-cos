@@ -62,6 +62,18 @@ var parsed_url = url.parse(req.url, true);
         );
     }
 
+    if (parsed_url.pathname === '/account') {
+        console.log("inside transact");
+        fs.readFile(path.join(__dirname,'public','account.html'), (err, content)=>{
+                if (err) throw err;
+                var data = parsed_url.query.coins;
+                console.log(data);
+                res.writeHead(200, { 'Content-Type':'text/html'});
+                res.end(content);
+            }
+        );
+    }
+
     // Extension of the file
     let extname = path.extname(filePath);
 
