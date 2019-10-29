@@ -50,3 +50,16 @@ body {
     background: greenyellow;
     cursor: pointer;
 }
+
+.purchase-log {
+    position: absolute;
+    display: block;
+    bottom: 10px;
+    left: 20%;
+    right: 20%;
+    bottom: 20%;
+    height: 200px;
+    border: 3px solid white;
+    border-radius: 3px;
+    background: rgba(0,1,0,0.7);
+}
